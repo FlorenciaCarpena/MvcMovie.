@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 
-namespace MvcMovie.Controllers  
+namespace MvcMovie.Controllers
 {
     public class HomeController : Controller
     {
@@ -9,5 +9,11 @@ namespace MvcMovie.Controllers
         {
             return View();  // Este método busca la vista Index.cshtml
         }
-    }
+    
+    public IActionResult Privacy()
+        {
+            return View();
+        }
+    } 
 }
+
