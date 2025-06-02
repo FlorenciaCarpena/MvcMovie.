@@ -18,6 +18,7 @@ namespace LoginMVCClase.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Mensaje = "¡Bienvenido a la página principal!";
             return View();
         }
 
