@@ -1,6 +1,30 @@
-﻿@if (Viewbag.ListaUsuarios != null)
-{
+﻿
+<form asp-asp-controller="Usuario" asp-action="ForMethod" method="get">
 
+	<label>Username</label>
+	<input type="text" name="username" />
+
+	<label>Password</label>
+	<input type="password" name="password" />
+
+	<label>Email</label>
+		<input type="text" name="email" />
+
+	<label>Name</label>
+	<input type="text" name="name" />
+
+	<label>Fecha Nacimiento</label>
+	<input type="text" name="fechanacimiento" />
+
+	
+
+		<button type="submit">Obtener usuarios</button>
+
+</form>
+
+@if (ViewBag.ListaUsuarios != null);
+
+{
 	<table border="1"> 
 		<tr>
 			<th>Id</th>
@@ -9,7 +33,7 @@
 			<th>Name</th>
 			<th>Fecha de Nacimiento</th>
 
-			</tr>
+		</tr>
 			@foreach (var usuario in ViewBag.Persona)
 			{
 				<tr>
@@ -17,11 +41,10 @@
 					<td>@usuario.username</td>
 					<td>@usuario.email</td>
 					<td>@usuario.name</td>
-					<td>@usuario.fechadenacimiento</td>
+					<td>@usuario.fechadenacimiento_</td>
 
 
 				</tr>
 			}
-
-			
-}
+	</table>
+};

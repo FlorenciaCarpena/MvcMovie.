@@ -10,12 +10,13 @@ namespace LoginMVCClase.Controllers
             return View();
         }
 
-        public ActionResult formethod()
+        public ActionResult formethod(string username, string password, string name, string fechanacimiento, string email)
         {
             UsuarioModel usuario = new UsuarioModel();
             List<UsuarioModel> listUsuario = new List<UsuarioModel>();
-            for (int i = 0; i < 5; i++) 
+            for (int i = 0; i <= 5; i++) 
             {
+                usuario = new UsuarioModel();
                 usuario.email = "florenciacarpena@gmail.com";
                 usuario.username = "FCarpena";
                 usuario.password = "password";
@@ -28,9 +29,9 @@ namespace LoginMVCClase.Controllers
 
             }
 
-            ViewBag.ListaUsuario = listUsuario;
+            
 
-                return RedirectToAction("Index");
+                return View("Index");
         }
 
     }

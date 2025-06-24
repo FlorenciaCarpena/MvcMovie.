@@ -1,22 +1,49 @@
-﻿@if (ViewBag.ListaUsuarios != null)
+﻿@{ 
+    ViewData["Title"] = "Index";
+
+}
+<h2>Personas</h2>
+
+<form asp-asp-controller="Persona" asp-action="ForExecution" method="get">
+    <label>Nombre</label>
+    <input type="text" name="nombre" />
+
+    <label>Apellido</label>
+    <input type="text" name="apellido" />
+
+    <label>Profesion/label>
+    <input type="text" name="profesion"/>
+
+    <button type="submit">Cargar y obtener usuarios</button>
+
+    </form>
+
+@if (ViewBag.Persona != null) ;
 {
-	<table border="i">
-		<tr>
-			<th>Id</th>
-			<th>Username</th>
-			<th>Email</th>
-			<th>Name</th>
-			<th>Fecha de Nacimiento</th>
-			</tr>
-			@foreach (var persona in ViewBag.Persona)
-			{
-				<tr>
-					<td>@UsuarioModel.id</td>
-					<td>@UsuarioModel.username</td>
-				<td>@UsuarioModel.email</td>
-				<td>@UsuarioModel.name</td>
-				<td>@usuario.fechadenacimiento</td>
-					</tr>
-			}
-			</table>
+<table border=" ="1">
+
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Profesion</th>
+
+    </tr>
+    @foreach (var persona in ViewBag.Persona)
+    {
+        <tr>
+            <td>@persona.nombre</td>
+            <td>@persona.apellido</td>
+            <td>@persona.profesion</td>
+        </tr>
+    }
+
+</table>
+
+}
+
+@if (ViewBag.Error != null) ;
+{
+    <h1>
+        Error el usuario no cumple los requisitos minimos de seguridad
+    </h1>
 }
