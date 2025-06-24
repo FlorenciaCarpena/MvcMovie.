@@ -1,0 +1,22 @@
+﻿@if (ViewBag.ListaUsuarios != null)
+{
+	<table border="i">
+		<tr>
+			<th>Id</th>
+			<th>Username</th>
+			<th>Email</th>
+			<th>Name</th>
+			<th>Fecha de Nacimiento</th>
+			</tr>
+			@foreach (var persona in ViewBag.Persona)
+			{
+				<tr>
+					<td>@UsuarioModel.id</td>
+					<td>@UsuarioModel.username</td>
+				<td>@UsuarioModel.email</td>
+				<td>@UsuarioModel.name</td>
+				<td>@usuario.fechadenacimiento</td>
+					</tr>
+			}
+			</table>
+}
