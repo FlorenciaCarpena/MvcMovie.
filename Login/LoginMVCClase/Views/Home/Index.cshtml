@@ -9,3 +9,51 @@
 
     <p>@ViewBag.Mensaje</p>  
 </div>
+
+@model List<LoginMVCClase.Models.PersonaModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>@ViewBag.Mensaje</h2>
+
+<form asp-action="Agregar" method="post" class="mb-4">
+    <div class="form-group">
+        <label>Nombre:</label>
+        <input name="nombre" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Apellido:</label>
+        <input name="apellido" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Profesión:</label>
+        <input name="profesion" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Agregar</button>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <h3>Lista de Personas</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Profesión</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var persona in Model)
+            {
+                <tr>
+                    <td>@persona.nombre</td>
+                    <td>@persona.apellido</td>
+                    <td>@persona.profesion</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

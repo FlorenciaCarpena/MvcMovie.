@@ -1,0 +1,46 @@
+﻿@model List<LoginMVCClase.Models.UsuarioModel>
+
+@{
+    ViewData["Title"] = "Lista de Usuarios";
+}
+
+<h2>Lista de Usuarios</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Fecha de nacimiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.id</td>
+                    <td>@usuario.username</td>
+                    <td>@usuario.email</td>
+                    <td>@usuario.name</td>
+                    <td>@usuario.fechadenacimiento_.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Eliminar" asp-route-id="@usuario.id" class="btn btn-danger btn-sm">Eliminar</a>
+                        <form asp-action="Eliminar" method="post" asp-route-id="@usuario.id" style="display:inline;"
+                              onsubmit="return confirm('¿Estás seguro de que querés eliminar este usuario?');">
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay usuarios cargados.</p>
+}

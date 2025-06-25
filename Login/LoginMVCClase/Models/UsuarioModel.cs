@@ -1,4 +1,6 @@
-﻿namespace LoginMVCClase.Models
+﻿using System.Reflection;
+
+namespace LoginMVCClase.Models
 {
     public class UsuarioModel
     {
@@ -20,3 +22,4 @@
 
     }
 }
+

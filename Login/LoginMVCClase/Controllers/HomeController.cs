@@ -1,8 +1,9 @@
-using System.Diagnostics;
 using LoginMVCClase.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LoginMVCClase.Controllers
 {
@@ -11,15 +12,29 @@ namespace LoginMVCClase.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        
+        private static List<PersonaModel> personas = new List<PersonaModel>();
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
+        
         public IActionResult Index()
         {
-            ViewBag.Mensaje = "¡Bienvenido a la página principal!";
-            return View();
+            ViewBag.Mensaje = "¡Bienvenido a la página principal! Agrega una persona:";
+            return View(personas);  
+        }
+
+        [HttpPost]
+        public IActionResult Agregar(PersonaModel persona)
+        {
+            if (ModelState.IsValid)
+            {
+                personas.Add(persona);
+            }
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

@@ -47,13 +47,10 @@ namespace LoginMVCClase.Controllers
             }
         }
 
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
-            // Cierra sesión
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            // Borra sesión
-            HttpContext.Session.Clear();
+            
+            HttpContext.SignOutAsync("Cookies");
 
             return RedirectToAction("Login");
         }

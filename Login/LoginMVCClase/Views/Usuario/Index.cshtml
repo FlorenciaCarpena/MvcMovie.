@@ -1,50 +1,64 @@
-﻿
-<form asp-asp-controller="Usuario" asp-action="ForMethod" method="get">
+﻿@model List<LoginMVCClase.Models.UsuarioModel>
 
-	<label>Username</label>
-	<input type="text" name="username" />
 
-	<label>Password</label>
-	<input type="password" name="password" />
+@{
+    ViewData["Title"] = "Usuarios";
+}
 
-	<label>Email</label>
-		<input type="text" name="email" />
+<h2>Agregar Usuario</h2>
 
-	<label>Name</label>
-	<input type="text" name="name" />
-
-	<label>Fecha Nacimiento</label>
-	<input type="text" name="fechanacimiento" />
-
-	
-
-		<button type="submit">Obtener usuarios</button>
-
+<form asp-action="FormMethod" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username" required />
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password" required />
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="email" name="email" required />
+    </div>
+    <div>
+        <label>Nombre:</label>
+        <input type="text" name="name" required />
+    </div>
+    <div>
+        <label>Fecha de nacimiento:</label>
+        <input type="date" name="fechanacimiento" required />
+    </div>
+    <button type="submit">Agregar usuario</button>
 </form>
 
-@if (ViewBag.ListaUsuarios != null);
-
+@if (Model != null && Model.Any())
 {
-	<table border="1"> 
-		<tr>
-			<th>Id</th>
-			<th>Username</th>
-			<th>Email</th>
-			<th>Name</th>
-			<th>Fecha de Nacimiento</th>
-
-		</tr>
-			@foreach (var usuario in ViewBag.Persona)
-			{
-				<tr>
-					<td>@usuario.id</td>
-					<td>@usuario.username</td>
-					<td>@usuario.email</td>
-					<td>@usuario.name</td>
-					<td>@usuario.fechadenacimiento_</td>
-
-
-				</tr>
-			}
-	</table>
-};
+    <h2>Lista de Usuarios</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Fecha de nacimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.id</td>
+                    <td>@usuario.username</td>
+                    <td>@usuario.email</td>
+                    <td>@usuario.name</td>
+                    <td>@usuario.fechadenacimiento_.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay usuarios cargados aún.</p>
+}
